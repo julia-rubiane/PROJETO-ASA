@@ -7,7 +7,7 @@
 
 # myorigin = /etc/mailname
 
-myorigin = asa.br
+myorigin = jenipabu.br
 
 # smtpd_banner = $myhostname ESMTP $mail_name (Ubuntu)
 smtpd_banner = ASA ESMTP Server
