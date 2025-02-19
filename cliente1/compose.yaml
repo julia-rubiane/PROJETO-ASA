@@ -5,13 +5,16 @@ services:
       context: ./proxy
       dockerfile: Dockerfile
     container_name: proxy-cliente1
+    volumes:
+      - ./proxy/certificados:/etc/nginx/certificados
     ports:
       - "8080:80/tcp"
+      - "443:443"
     depends_on:
       - web1
       - web2
     networks:
-      - asa-network
+      - provedor_asa-network
 
   ssh:
     build: 
@@ -21,7 +24,7 @@ services:
     ports:
       - "2022:22"
     networks:
-      - asa-network
+      - provedor_asa-network
 
   db:
     #Docker Networks db:
@@ -42,7 +45,7 @@ services:
       - 3306
       - 33060
     networks:
-    - asa-network
+    - provedor_asa-network
     
   web1:
     image: wordpress:latest
@@ -56,7 +59,7 @@ services:
       - WORDPRESS_DB_PASSWORD=wordpress
       - WORDPRESS_DB_NAME=wordpress
     networks:
-    - asa-network
+    - provedor_asa-network
 
 
   db2:
@@ -78,7 +81,7 @@ services:
       - 3306
       - 33060
     networks:
-    - asa-network
+    - provedor_asa-network
     
   web2:
     image: wordpress:latest
@@ -92,7 +95,7 @@ services:
       - WORDPRESS_DB_PASSWORD=wordpress
       - WORDPRESS_DB_NAME=wordpress
     networks:
-    - asa-network
+    - provedor_asa-network
  
 
 volumes:
@@ -103,5 +106,5 @@ volumes:
 
 #Docker Networks
 networks:
-  asa-network:
-    driver: bridge
+  provedor_asa-network:
+    external: true

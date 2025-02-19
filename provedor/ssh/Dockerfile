@@ -18,7 +18,6 @@ RUN echo "patrick:redes"|chpasswd
 RUN echo "julia:redes"|chpasswd
 RUN echo "redes:redes"|chpasswd
 
-
 # Expõe a porta 22 para SSH
 EXPOSE 22
 

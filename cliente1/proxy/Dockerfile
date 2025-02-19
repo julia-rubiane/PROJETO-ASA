@@ -5,3 +5,5 @@ COPY default.conf /etc/nginx/conf.d
 
 # Copia a pagina personalizada para a imagem do servidor
 COPY index.html /usr/share/nginx/html
+
+EXPOSE 80 443
