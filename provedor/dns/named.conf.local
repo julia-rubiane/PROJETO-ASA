@@ -1,0 +1,31 @@
+//
+// Do any local configuration here
+//
+
+zone "jenipabu.br"{
+    type master;
+    file "/etc/bind/db.jenipabu.br";
+    allow-transfer {
+        127.0.0.1;
+    };
+};
+
+zone "pipa.br"{
+    type master;
+    file "/etc/bind/db.pipa.br";
+    allow-transfer {
+        127.0.0.1;
+    };
+};
+
+zone "miami.br"{
+    type master;
+    file "/etc/bind/db.miami.br";
+    allow-transfer {
+        127.0.0.1;
+    };
+};
+
+// Consider adding the 1918 zones here, if they are not used in your
+// organization
+//include "/etc/bind/zones.rfc1918";

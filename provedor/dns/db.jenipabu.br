@@ -1,0 +1,20 @@
+;
+; BIND data file for jenipabu.br zone
+;
+$TTL	604800
+@	IN	SOA	ns.jenipabu.br. root.jenipabu.br. (
+			      1		; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+;
+@		IN	NS	ns.jenipabu.br.
+NS		IN	A    10.24.8.5
+@		IN	MX  10  mail.jenipabu.br.
+@		IN	A	 10.24.8.5
+mail	IN	A	 10.24.8.5
+www		IN	A	 10.24.8.5
+portal	IN	CNAME	www
+julia	IN	CNAME	www
+rubiane	IN	CNAME	www

@@ -1,0 +1,21 @@
+;
+; BIND data file for miami.br zone
+;
+$TTL	604800
+@	IN	SOA	ns.miami.br. root.miami.br. (
+			      1		; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+;
+@		IN	NS	ns.
+@		IN	MX  10  mail.
+@		IN	A	 10.24.8.5
+mail	IN	A	 10.24.8.5
+www		IN	A	 10.24.8.5
+portal	IN	CNAME	www
+julia	IN	CNAME	www
+rubiane	IN	CNAME	www
+cms		IN	CNAME	www
+

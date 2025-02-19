@@ -1,0 +1,20 @@
+;
+; BIND data file for pipa.br zone
+;
+$TTL	604800
+@	IN	SOA	ns.pipa.br. root.pipa.br. (
+			      1		; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+;
+@		IN	NS	ns.pipa.br.
+NS		IN	A	 10.24.8.5
+@		IN	MX  10  mail.pipa.br
+@		IN	A	 10.24.8.5
+mail	IN	A	 10.24.8.5
+www		IN	A	 10.24.8.5
+portal	IN	CNAME	www
+julia	IN	CNAME	www
+rubiane	IN	CNAME	www
