@@ -10,11 +10,11 @@ $TTL	604800
 			 604800 )	; Negative Cache TTL
 ;
 @		IN	NS	ns.pipa.br.
-NS		IN	A	 192.168.1.104
+NS		IN	A	 192.168.1.102
 @		IN	MX  10  mail.pipa.br
-@		IN	A	 192.168.1.104
-mail	IN	A	 192.168.1.104
-www		IN	A	 192.168.1.104
+@		IN	A	 192.168.1.102
+mail	IN	A	 192.168.1.102
+www		IN	A	 192.168.1.102
 portal	IN	CNAME	www
 julia	IN	CNAME	www
 rubiane	IN	CNAME	www
