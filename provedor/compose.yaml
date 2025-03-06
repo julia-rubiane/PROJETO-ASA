@@ -17,8 +17,9 @@ services:
     container_name: proxy
     ports:
       - "80:80/tcp"
-#    depends_on:
-#      - web
+      - "443:443/tcp"
+    volumes:
+      - ./proxy/certificados:/etc/nginx/certificados
     networks:
       - asa-network
 

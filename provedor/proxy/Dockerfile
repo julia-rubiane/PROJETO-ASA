@@ -1,7 +1,7 @@
 FROM nginx:latest
 
 # Copia a configuracao do servidor
-COPY default.conf /etc/nginx/conf.d
+COPY nginx.conf /etc/nginx/nginx.conf
 
 # Copia a pagina personalizada para a imagem do servidor
-COPY index.html /usr/share/nginx/html
+# COPY index.html /usr/share/nginx/html

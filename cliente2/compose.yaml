@@ -1,56 +1,65 @@
- 
+
 services:
+  # Serviço SSH
   ssh:
-    build: 
+    build:
       context: ./ssh
       dockerfile: Dockerfile
-    container_name: ssh-cliente1
+    container_name: ssh-cliente2
     ports:
       - "2022:22"
     networks:
       - provedor_asa-network
 
-  db:
-    #Docker Networks db:
-    # We use a mariadb image which supports both amd64 & arm64 architecture
-    image: mariadb:10.6.4-focal
-    # If you really want to use MySQL, uncomment the following line
-    #image: mysql:8.0.27
-    command: '--default-authentication-plugin=mysql_native_password'
-    volumes:
-      - db_data:/var/lib/mysql
+  # Banco de dados
+  db_pipa:
+    image: mariadb:latest
+    container_name: db_pipa
     restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=somewordpress
-      - MYSQL_DATABASE=wordpress
-      - MYSQL_USER=wordpress
-      - MYSQL_PASSWORD=wordpress
-    expose:
-      - 3306
-      - 33060
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wpuser
+      MYSQL_PASSWORD: wppass
+    volumes:
+      - ./mysql/data:/var/lib/mysql
     networks:
-    - provedor_asa-network
-    
-  web1:
+      - provedor_asa-network
+
+  pipa1:
     image: wordpress:latest
-    container_name: pipa
-    volumes:
-      - wp_data:/var/www/html
+    container_name: pipa1
     restart: always
     environment:
-      - WORDPRESS_DB_HOST=db
-      - WORDPRESS_DB_USER=wordpress
-      - WORDPRESS_DB_PASSWORD=wordpress
-      - WORDPRESS_DB_NAME=wordpress
+      WORDPRESS_DB_HOST: db_pipa
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: wppass
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - ./wordpress:/var/www/html
     networks:
-    - provedor_asa-network
+      - provedor_asa-network
+
+  pipa2:
+    image: wordpress:latest
+    container_name: pipa2
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db_pipa
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: wppass
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - ./wordpress:/var/www/html
+    networks:
+      - provedor_asa-network
+
 
 volumes:
-  db_data:
-  wp_data:
+  db_data: {}  # Volume persistente para o banco de dados
+  wp_data: {}  # Volume persistente para os dados do WordPress
 
-
-#Docker Networks
+# Docker Networks
 networks:
   provedor_asa-network:
-    external: true
+    external: true  # Caso a rede externa não exista, remova essa linha para o Docker Compose gerenciar
